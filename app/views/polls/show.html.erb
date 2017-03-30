@@ -1,14 +1,14 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-12">
+    <p id="notice"><%= notice %></p>
+  </div>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @poll.title %>
-</p>
-
-<p>
-  <strong>Published:</strong>
-  <%= @poll.published %>
-</p>
+<div class="row">
+  <div class="col-md-4">
+    <h1><%= @poll.title %> <small><%= if @poll.published then "published" else "" end %></small></h1>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_poll_path(@poll) %> |
 <%= link_to 'Back', polls_path %>

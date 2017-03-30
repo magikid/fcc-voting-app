@@ -5,7 +5,7 @@ class PollsController < ApplicationController
   # GET /polls
   # GET /polls.json
   def index
-    @polls = Poll.all
+    @polls = current_user.polls
   end
 
   # GET /polls/1
@@ -15,7 +15,7 @@ class PollsController < ApplicationController
 
   # GET /polls/new
   def new
-    @poll = Poll.new
+    @poll = current_user.polls.new
   end
 
   # GET /polls/1/edit
@@ -54,7 +54,7 @@ class PollsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_poll
-      @poll = Poll.find(params[:id])
+      @poll = current_user.polls.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
