@@ -5,7 +5,7 @@ class PollsController < ApplicationController
   # GET /polls
   # GET /polls.json
   def index
-    @polls = current_user.polls
+    @polls = current_user.polls.includes(:options)
   end
 
   # GET /polls/1
@@ -16,6 +16,7 @@ class PollsController < ApplicationController
   # GET /polls/new
   def new
     @poll = current_user.polls.new
+    @poll.options << Option.new
   end
 
   # GET /polls/1/edit
@@ -26,6 +27,11 @@ class PollsController < ApplicationController
   # POST /polls.json
   def create
     @poll = current_user.polls.new(poll_params)
+    @poll.save!
+
+    poll_params[:options].each do |option|
+      @poll.options << Option.create(text: option[:text])
+    end
 
     if @poll.save
       redirect_to @poll, notice: 'Poll was successfully created.'
@@ -54,11 +60,11 @@ class PollsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_poll
-      @poll = current_user.polls.find(params[:id])
+      @poll = current_user.polls.includes(:options).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def poll_params
-      params.require(:poll).permit(:title, :published)
+      params.require(:poll).permit(:title, :published, :options)
     end
 end
