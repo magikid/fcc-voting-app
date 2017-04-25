@@ -29,10 +29,6 @@ class PollsController < ApplicationController
     @poll = current_user.polls.new(poll_params)
     @poll.save!
 
-    poll_params[:options].each do |option|
-      @poll.options << Option.create(text: option[:text])
-    end
-
     if @poll.save
       redirect_to @poll, notice: 'Poll was successfully created.'
     else
@@ -65,6 +61,6 @@ class PollsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def poll_params
-      params.require(:poll).permit(:title, :published, :options)
+      params.require(:poll).permit(:title, :published, options_attributes: ["text"])
     end
 end
