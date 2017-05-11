@@ -7,7 +7,11 @@ class ResponsesController < ApplicationController
 
   # GET /responses/new
   def new
-    @response = Response.new(poll: @poll)
+    if cookies[:voted]
+      redirect_to poll_responses_path, notice: 'You already voted.'
+    else
+      @response = Response.new(poll: @poll)
+    end
   end
 
   # POST /responses
@@ -17,6 +21,7 @@ class ResponsesController < ApplicationController
     @response.poll = @poll
 
     if @response.save
+      cookies[:voted] = true
       redirect_to poll_responses_path, notice: 'Response was successfully created.'
     else
       render :new
