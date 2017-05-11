@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "Reponses", type: :request do
-  describe "GET /reponses" do
+RSpec.describe "Responses", type: :request do
+  describe "GET /responses" do
     it "works! (now write some real specs)" do
-      get reponses_path
+      get responses_path
       expect(response).to have_http_status(200)
     end
   end

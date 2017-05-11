@@ -1,6 +1,6 @@
 class PollsController < ApplicationController
   before_action :set_poll, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, except: [:show]
+  before_action :require_login
 
   # GET /polls
   # GET /polls.json
@@ -11,6 +11,7 @@ class PollsController < ApplicationController
   # GET /polls/1
   # GET /polls/1.json
   def show
+    redirect_to new_poll_response_path(@poll) unless current_user == @poll.user
   end
 
   # GET /polls/new
