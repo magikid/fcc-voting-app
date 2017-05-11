@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :polls do
-    resources :responses, only: :new
+    resources :responses, only: [:new, :create, :index]
   end
 
   get 'welcome/index'

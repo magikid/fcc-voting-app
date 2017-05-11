@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Responses</h1>
+
+<table>
+  <thead>
+    <th>Option</th>
+    <th>Count</th>
+  </thead>
+  <tbody>
+    <% @responses.each do |option, count| %>
+      <tr>
+        <td><%= option %></td><td><%= count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Response', new_poll_response_path %>
