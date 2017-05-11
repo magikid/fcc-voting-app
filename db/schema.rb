@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170430022215) do
+ActiveRecord::Schema.define(version: 20170511000542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 20170430022215) do
     t.index ["user_id"], name: "index_polls_on_user_id", using: :btree
   end
 
+  create_table "responses", force: :cascade do |t|
+    t.integer  "poll_id"
+    t.integer  "option_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["option_id"], name: "index_responses_on_option_id", using: :btree
+    t.index ["poll_id"], name: "index_responses_on_poll_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.text     "name"
     t.text     "email"
@@ -48,4 +57,6 @@ ActiveRecord::Schema.define(version: 20170430022215) do
 
   add_foreign_key "options", "polls"
   add_foreign_key "polls", "users"
+  add_foreign_key "responses", "options"
+  add_foreign_key "responses", "polls"
 end
