@@ -15,6 +15,7 @@ gem 'redis', '~> 3.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'coffee-script'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem "chartkick"
 
 gem "clearance"
 

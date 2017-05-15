@@ -2,7 +2,8 @@ class ResponsesController < ApplicationController
   before_action :set_poll
 
   def index
-    @responses = @poll.responses.reduce(Hash.new(0)){|final, resp| final[resp.option.text] += 1; final}
+    @voted = cookies[:voted]
+    @responses = @poll.responses.includes(:option).group(:option).count.map{|k,v| {k.text => v}}.reduce(&:merge)
   end
 
   # GET /responses/new

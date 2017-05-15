@@ -60,6 +60,7 @@ GEM
     capybara-webkit (1.14.0)
       capybara (>= 2.3.0, < 2.14.0)
       json
+    chartkick (2.2.3)
     clearance (1.16.0)
       bcrypt
       email_validator (~> 1.4)
@@ -211,6 +212,7 @@ DEPENDENCIES
   byebug
   capybara
   capybara-webkit
+  chartkick
   clearance
   coffee-script
   database_cleaner
