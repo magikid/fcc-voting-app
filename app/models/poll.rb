@@ -1,7 +1,7 @@
 class Poll < ApplicationRecord
   belongs_to :user
-  has_many :options, inverse_of: :poll
-  has_many :responses
+  has_many :options, inverse_of: :poll, dependent: :destroy
+  has_many :responses, dependent: :destroy
 
   accepts_nested_attributes_for :options
 
