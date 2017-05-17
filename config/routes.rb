@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/p/:short_id', to: 'polls#show', as: 'share'
+
   resources :polls do
     resources :responses, only: [:new, :create, :index]
   end

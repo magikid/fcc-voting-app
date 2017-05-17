@@ -57,7 +57,11 @@ class PollsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_poll
-      @poll = Poll.includes(:options).find(params[:id])
+      if params[:short_id]
+        @poll = Poll.includes(:options).where(short_id: params[:short_id]).first
+      else
+        @poll = Poll.includes(:options).find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
