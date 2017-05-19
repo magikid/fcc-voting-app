@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :response do
-    poll nil
-    option nil
+    poll
+    option
   end
 end

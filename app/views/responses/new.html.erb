@@ -1,6 +1,6 @@
 <h1>New Response for <%= @poll.title %></h1>
 
-<%= form_for @response, url: poll_responses_path do |f| %>
+<%= form_for @response, url: poll_responses_path(@poll) do |f| %>
   <%= f.collection_select(:option_id, @poll.options, :id, :text) %>
   <%= f.submit %>
 <% end %>
