@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :poll do
     title "Poll title"
     published false
+    short_id "123qwe"
 
     after(:create) do |poll, evaluator|
       create_list(:option, 5, poll: poll)
