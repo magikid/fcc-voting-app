@@ -54,8 +54,8 @@ RSpec.describe ResponsesController, type: :controller do
 
   describe "GET #new" do
     it "assigns a new response as @response" do
-      get :new, params: {}, session: valid_session
-      expect(assigns(:response)).to be_a_new(Response)
+      poll = create(:poll_with_user)
+      get :new, params: {poll_id: poll.id}, session: valid_session
     end
   end
 

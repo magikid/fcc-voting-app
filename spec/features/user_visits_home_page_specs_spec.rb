@@ -9,6 +9,6 @@ RSpec.feature "User visits home page" do
     visit root_path
 
     # verify
-    expect(page).to have_css "li", "Number One Poll"
+    expect(page).to have_css "li", text: "Number One Poll"
   end
 end

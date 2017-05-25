@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.feature "User shares a polls" do
   scenario "they see a shareable link to their poll" do
-    poll = create(:user_with_poll).polls.first
-    visit poll_path(poll)
-    expect(page).to have_css ".shareable-link", text: poll.short_id
+    user = create(:user_with_poll)
+    poll = user.polls.first
+    visit poll_path(poll, as: user)
+    expect(page).to have_css "a", text: "Share me!" 
   end
 end
