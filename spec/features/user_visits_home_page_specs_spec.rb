@@ -12,7 +12,7 @@ RSpec.feature "User visits home page" do
     expect(page).to have_css "li", text: "Number One Poll"
   end
 
-  scenario "the polls on the page go somewhere" do
+  scenario "the public polls allow new responses" do
     # setup
     options_found = 0
     poll = create(:poll_with_user, title: "Number One Poll", published: true)
@@ -26,6 +26,16 @@ RSpec.feature "User visits home page" do
 
     # verify
     expect(options_found).to eq poll.options.count
+  end
 
+  scenario "there are no unpublished polls" do
+    # setup
+    poll = create(:poll_with_user, published: false)
+
+    # exercise
+    visit root_path
+    
+    # verify
+    expect(page).to_not have_css "li", text: poll.title
   end
 end
