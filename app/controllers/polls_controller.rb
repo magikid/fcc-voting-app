@@ -1,6 +1,6 @@
 class PollsController < ApplicationController
   before_action :set_poll, only: [:show, :edit, :update, :destroy]
-  before_action :require_login
+  before_action :require_login, except: :show
 
   # GET /polls
   # GET /polls.json
