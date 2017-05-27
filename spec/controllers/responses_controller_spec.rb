@@ -38,9 +38,11 @@ RSpec.describe ResponsesController, type: :controller do
 
   describe "GET #index" do
     it "assigns all responses as @responses" do
-      response = Response.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(assigns(:responses)).to eq([response])
+      poll = create(:poll_with_user)
+
+      get :index, params: {poll_id: poll.id}
+
+      expect(response.status).to eq 200
     end
   end
 
