@@ -60,7 +60,7 @@ GEM
     capybara-webkit (1.14.0)
       capybara (>= 2.3.0, < 2.14.0)
       json
-    chartkick (3.3.0)
+    chartkick (3.4.0)
     clearance (1.16.0)
       bcrypt
       email_validator (~> 1.4)
